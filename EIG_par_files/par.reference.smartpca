@@ -1,0 +1,9 @@
+genotypename:                                                ref_eigenstrat/ref.eigenstratgeno
+numchrom: 29
+indivname:                                                   ref_eigenstrat/ref.ind
+numoutevec: 2
+altnormstyle:                                                YES
+evaloutname:                                                 ref_eigenstrat/ref.eval
+evecoutname:                                                 ref_eigenstrat/ref.evec
+snpname:                                                     ref_eigenstrat/ref.snp
+numoutlieriter:                                              0

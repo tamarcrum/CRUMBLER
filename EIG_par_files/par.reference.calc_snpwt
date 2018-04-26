@@ -1,0 +1,7 @@
+snpwtoutput: test.reference
+log:                                                               ref_eigenstrat/ref.log
+eval:                                                              ref_eigenstrat/ref.eval
+evec:                                                              ref_eigenstrat/ref.evec
+geno:                                                              ref_eigenstrat/ref.eigenstratgeno
+snp:                                                               ref_eigenstrat/ref.snp
+ind:                                                               ref_eigenstrat/ref.ind

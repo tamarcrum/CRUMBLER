@@ -1,0 +1,10 @@
+genotypename:                                                ref_merged/ref_input.ped
+numchrom: 29
+indivname:                                                   ref_merged/ref_input.pedind
+snpoutname:                                                  ref_eigenstrat/ref.snp
+snpname:                                                     ref_merged/ref_input.map
+genotypeoutname:                                             ref_eigenstrat/ref.eigenstratgeno
+outputformat:                                                EIGENSTRAT
+indivoutname:                                                ref_eigenstrat/ref.ind
+outputgroup:                                            	 YES
+familynames:                                                 NO

@@ -1,0 +1,10 @@
+genotypename:                            unk_merged/unk_input.ped
+numchrom: 29
+indivname:                            unk_merged/unk_input.pedind
+snpoutname:                            unk_eigenstrat/unk.snp
+snpname:                            unk_merged/unk_input.map
+genotypeoutname:                            unk_eigenstrat/unk.eigenstratgeno
+outputformat:                            EIGENSTRAT
+indivoutname:                            unk_eigenstrat/unk.ind
+outputgroup:                            YES
+familynames:                            NO

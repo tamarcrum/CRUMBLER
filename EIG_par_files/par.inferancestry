@@ -1,0 +1,5 @@
+ind:                                                                                                           ./unk_eigenstrat/unk.ind
+geno:                                                                                                          ./unk_eigenstrat/unk.eigenstratgeno
+predpcoutput:                                                                                                          ./output_table.txt
+snp:                                                                                                           ./unk_eigenstrat/unk.snp
+snpwt: test.reference
