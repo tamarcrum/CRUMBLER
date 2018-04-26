@@ -6,10 +6,10 @@ sw_filt.py
  - Filters input genotype files for specified marker/SNP list
  - Handles the additional manipulation of AB genotypes for input into EIGENSTRAT
  
-ref_merge.py
+sw_ref_merge.py
   - Merges genotypes files following filtering for reference individuals
   
-unk_merge.py
+sw_unk_merge.py
   - Merges genotypes files following filtering for unknown (target) individuals
    
 sw_edit_output.py
