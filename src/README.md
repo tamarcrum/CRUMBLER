@@ -1,6 +1,7 @@
 Source code for CRUMBLER
 
 Files:
+
 sw_filt.py
  - Filters input genotype files for specified marker/SNP list
  - Handles the additional manipulation of AB genotypes for input into EIGENSTRAT
