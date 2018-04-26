@@ -1,8 +1,5 @@
 #!/usr/bin/python
 
-#Run breed composition pipeline using a par file for inputs
-
-
 import os
 import sys
 
@@ -310,5 +307,5 @@ elif run_reference == "N":
 
 
 	#Edit Output
-	output_table_command = "python " + path_of_source_code +  "/sw_edit_snpwt_output.py " + marker_list + " " + final_table_name + " " + snpweights_filename
-	os.system(output_table_command)
+ 	output_table_command = "python " + path_of_source_code +  "/sw_edit_snpwt_output.py " + marker_list + " " + final_table_name + " " + snpweights_filename
+ 	os.system(output_table_command)
