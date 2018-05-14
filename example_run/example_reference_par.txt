@@ -1,0 +1,12 @@
+genotypes: ./example_reference_genos/ 
+marker_list: marker_list_example.csv
+plink_species_ID: cow
+assay_plink_map_files: map_files_example.txt
+output_table_name: 
+reference_set: Y
+number_of_chrom: 29
+number_ref_populations: 2
+snpweights_filename: test.reference
+eig_par_file_directory_path: INSERT PATH HERE
+SNPweights_software_path: INSERT PATH HERE
+EIGENSOFT_software_path:  INSERT PATH HERE

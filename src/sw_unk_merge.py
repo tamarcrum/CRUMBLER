@@ -57,6 +57,7 @@ for x in ped_file_list:
 
 merge_file_list.close()	 
 
+
 if len(ped_file_list) > 2:
 	plink_merge_mult_command = "plink --file " + path_of_inputs + first_file + " --merge-list " + path_of_outputs1 + "merge_file_list_ref.txt --recode --allow-no-sex --cow --out " + path_of_outputs1 + unknown_prefix
 	os.system(plink_merge_mult_command)
