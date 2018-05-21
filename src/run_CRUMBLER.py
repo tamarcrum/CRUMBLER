@@ -101,7 +101,7 @@ if par_dict.has_key('number_of_chrom') and par_dict['number_of_chrom'] != '':
 else:	
 	number_of_chrom_answer = raw_input('Please specify the number of chromosomes (autosomes) for the species. The X is assumed to be num+1 and the Y is numchrom+2.(enter # or U if unknown): ')	
  	if number_of_chrom_answer != 'U':
- 		user_chrom = number_of_chrom_answer
+ 		number_of_chromosomes = number_of_chrom_answer
 	else:
 		sys.exit('Please figure out the number of chromosomes (autosomes) for the species and specify in the parameter file. The X is assumed to be num+1 and the Y is numchrom+2.')	
 
