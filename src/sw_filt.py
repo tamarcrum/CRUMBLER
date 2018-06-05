@@ -140,6 +140,8 @@ for x in nonempty_genotype_files:
 		first_line = f.readline().strip()
 		if 'BB' in first_line:
 			plink_AB_command()
+                elif 'B' in first_line:
+                        plink_AB_command()
 		elif 'C' in first_line: 
 			sys.exit('Genotypes are not in AB or 12 format.')
 		elif 'T' in first_line: 
