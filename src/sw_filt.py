@@ -19,9 +19,10 @@ def mylistdir(directory):
 path_of_inputs = sys.argv[1]
 path_of_outputs = sys.argv[2]
 marker_list = sys.argv[3]
-plink_species_ID = sys.argv[4]
-mapfiles = sys.argv[5]
-# filter_plink_call_rate = sys.argv[6]
+plink_marker_action = sys.argv[4]
+plink_species_ID = sys.argv[5]
+mapfiles = sys.argv[6]
+
 
 		
 #Getting MAP file dict
@@ -66,12 +67,15 @@ def plink_AB_command():
 				ref_allele.write(s + " A" + "\n")
 			ref_allele.close()
 
-#Plink command to filter markers and set reference allele			
-			plink_filter_markers_command = "plink --ped " + path_of_inputs + x + " --map " + name_of_output_map + " --extract " + marker_list + " --reference-allele " + path_of_outputs + "ref_allele_" + assay + ".txt  --recode 12 --allow-no-sex --" + plink_species_ID + " --out " + path_of_outputs + x + "_filt_" + str(counter)
-			os.system(plink_filter_markers_command)
+#Plink command to filter markers and set reference allele
+			if plink_marker_action == "S":			
+				plink_filter_markers_command = "plink --ped " + path_of_inputs + x + " --map " + name_of_output_map + " --extract " + marker_list + " --reference-allele " + path_of_outputs + "ref_allele_" + assay + ".txt  --recode 12 --allow-no-sex --" + plink_species_ID + " --out " + path_of_outputs + x + "_filt_" + str(counter)
+				os.system(plink_filter_markers_command)
+			elif plink_marker_action == "R":
+				plink_filter_markers_command = "plink --ped " + path_of_inputs + x + " --map " + name_of_output_map + " --extract " + marker_list + " --range --reference-allele " + path_of_outputs + "ref_allele_" + assay + ".txt  --recode 12 --allow-no-sex --" + plink_species_ID + " --out " + path_of_outputs + x + "_filt_" + str(counter)
+				os.system(plink_filter_markers_command)
 
-			 
-			
+			 	
 		elif len(mapfiledict) <= 1:
 			k,v = mapfiledict.items()[0]
 			PLINK_map = v
@@ -96,20 +100,32 @@ def plink_AB_command():
 			ref_allele.close()
 
 #Plink command to filter markers and set reference allele			
-			plink_filter_markers_command = "plink --ped " + path_of_inputs + x + " --map " + name_of_output_map + " --extract " + marker_list + " --reference-allele " + path_of_outputs + "ref_allele_" + assay + ".txt  --recode 12 --allow-no-sex --" + plink_species_ID + " --out " + path_of_outputs + x + "_filt_" + str(counter)
-			os.system(plink_filter_markers_command)
+			if plink_marker_action == "S":			
+				plink_filter_markers_command = "plink --ped " + path_of_inputs + x + " --map " + name_of_output_map + " --extract " + marker_list + " --reference-allele " + path_of_outputs + "ref_allele_" + assay + ".txt  --recode 12 --allow-no-sex --" + plink_species_ID + " --out " + path_of_outputs + x + "_filt_" + str(counter)
+				os.system(plink_filter_markers_command)
+			elif plink_marker_action == "R":
+				plink_filter_markers_command = "plink --ped " + path_of_inputs + x + " --map " + name_of_output_map + " --extract " + marker_list + " --range --reference-allele " + path_of_outputs + "ref_allele_" + assay + ".txt  --recode 12 --allow-no-sex --" + plink_species_ID + " --out " + path_of_outputs + x + "_filt_" + str(counter)
+				os.system(plink_filter_markers_command)
 	
 def plink_12_command():
 	for k,v in mapfiledict.items():
 		if k == assay:
 			PLINK_map = v
-			plink_filter_markers_command = "plink --ped " + path_of_inputs + x + " --map " + PLINK_map + " --extract " + marker_list + " --recode --allow-no-sex --" + plink_species_ID + " --out " + path_of_outputs + x + "_filt_" + str(counter)
-			os.system(plink_filter_markers_command)
+			if plink_marker_action == "S":			
+				plink_filter_markers_command = "plink --ped " + path_of_inputs + x + " --map " + PLINK_map + " --extract " + marker_list + " --recode --allow-no-sex --" + plink_species_ID + " --out " + path_of_outputs + x + "_filt_" + str(counter)
+				os.system(plink_filter_markers_command)
+			elif plink_marker_action == "R":
+				plink_filter_markers_command = "plink --ped " + path_of_inputs + x + " --map " + PLINK_map + " --extract " + marker_list + " --range --recode --allow-no-sex --" + plink_species_ID + " --out " + path_of_outputs + x + "_filt_" + str(counter)
+				os.system(plink_filter_markers_command)
 		elif len(mapfiledict) <= 1:
 			k,v = mapfiledict.items()[0]
 			PLINK_map = v
-			plink_filter_markers_command = "plink --ped " + path_of_inputs + x + " --map " + PLINK_map + " --extract " + marker_list + " --recode --allow-no-sex --" + plink_species_ID + " --out " + path_of_outputs + x + "_filt_" + str(counter)
-			os.system(plink_filter_markers_command)
+			if plink_marker_action == "S":			
+				plink_filter_markers_command = "plink --ped " + path_of_inputs + x + " --map " + PLINK_map + " --extract " + marker_list + " --recode --allow-no-sex --" + plink_species_ID + " --out " + path_of_outputs + x + "_filt_" + str(counter)
+				os.system(plink_filter_markers_command)
+			elif plink_marker_action == "R":
+				plink_filter_markers_command = "plink --ped " + path_of_inputs + x + " --map " + PLINK_map + " --extract " + marker_list + " --range --recode --allow-no-sex --" + plink_species_ID + " --out " + path_of_outputs + x + "_filt_" + str(counter)
+				os.system(plink_filter_markers_command)
 
 
 #Making Output Directory
