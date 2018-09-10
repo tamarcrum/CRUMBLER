@@ -33,13 +33,9 @@ else:
 
 if par_dict.has_key('marker_list') and par_dict['marker_list'] != '':
 	marker_list = par_dict['marker_list']
+	plink_marker_action = raw_input('Do you wish to filter on SNP ID (one column in marker list) or chromosome ranges (4 columns in marker list).  Enter S for SNP ID and R for Ranges: ')
+	
 else:
-	# marker_list_answer = raw_input("Do you want to use a SNP list for marker filtering (Y/N): ")
-# 	if marker_list_answer == 'N':
-# 		filter_plink_call_rate == 'Y'
-# 	elif marker_list_answer == 'Y': 
-# 		#print 'No marker list file specified.'
-# 		sys.exit('Please specify your SNP list in the parameter file.')
 	sys.exit('Please specify your SNP list in the parameter file.')
 	
 if par_dict.has_key('plink_species_ID') and par_dict['plink_species_ID'] != '':
@@ -115,6 +111,9 @@ else:
 if run_reference == "Y":	
 ##Edit EIGENSOFT par files based on inputs
 ##Edit reference EIGENSTRAT file for # of chromosomes
+	path_of_new_eigensoft_par_files = 'eigensoft_par_files/'
+	if not os.path.exists(path_of_new_eigensoft_par_files):
+		os.makedirs(path_of_new_eigensoft_par_files)
 	par_reference_eigenstrat = eig_par_file_directory_path + 'par.reference.PED.EIGENSTRAT'
 	with open(par_reference_eigenstrat) as e:
 		par_reference_EIGENSTRAT_dict = {}
@@ -126,7 +125,7 @@ if run_reference == "Y":
 	for key, value in par_reference_EIGENSTRAT_dict.items():
 		par_reference_EIGENSTRAT_dict['numchrom'] = number_of_chromosomes
 		
-	par_reference_EIGENSTRAT_new = eig_par_file_directory_path + 'par.reference.PED.EIGENSTRAT'
+	par_reference_EIGENSTRAT_new = path_of_new_eigensoft_par_files + 'par.reference.PED.EIGENSTRAT'
 	eopen = open(par_reference_EIGENSTRAT_new, 'w')
 	
 	for k,v in par_reference_EIGENSTRAT_dict.items():
@@ -146,7 +145,7 @@ if run_reference == "Y":
 		par_reference_smartpca_dict['numchrom'] = number_of_chromosomes
 		par_reference_smartpca_dict['numoutevec'] = user_k
 		
-	par_reference_smartpca_new = eig_par_file_directory_path + 'par.reference.smartpca'
+	par_reference_smartpca_new = path_of_new_eigensoft_par_files + 'par.reference.smartpca'
 	sopen = open(par_reference_smartpca_new, 'w')
 	
 	for k,v in par_reference_smartpca_dict.items():
@@ -165,7 +164,7 @@ if run_reference == "Y":
 	for key, value in par_reference_calc_snpwt_dict.items():
 		par_reference_calc_snpwt_dict['snpwtoutput'] = snpweights_filename
 
-	par_reference_calc_snpwt_new = eig_par_file_directory_path + 'par.reference.calc_snpwt'
+	par_reference_calc_snpwt_new = path_of_new_eigensoft_par_files + 'par.reference.calc_snpwt'
 	copen = open(par_reference_calc_snpwt_new, 'w')
 
 	for k,v in par_reference_calc_snpwt_dict.items():
@@ -184,7 +183,7 @@ if run_reference == "Y":
 	for key, value in par_inferancestry_dict.items():
 		par_inferancestry_dict['snpwt'] = snpweights_filename
 
-	par_inferancestry_new = eig_par_file_directory_path + 'par.inferancestry'
+	par_inferancestry_new = path_of_new_eigensoft_par_files + 'par.inferancestry'
 	iopen = open(par_inferancestry_new, 'w')
 
 	for k,v in par_inferancestry_dict.items():
@@ -193,6 +192,9 @@ if run_reference == "Y":
 
 elif run_reference == "N":
 ##Unknown EIGENSTRAT CONVERTF par file edits for # of chromosomes
+	path_of_new_eigensoft_par_files = 'eigensoft_par_files/'
+	if not os.path.exists(path_of_new_eigensoft_par_files):
+		os.makedirs(path_of_new_eigensoft_par_files)
 	par_unknown_eigenstrat = eig_par_file_directory_path + 'par.unknown.PED.EIGENSTRAT'	
 	with open(par_unknown_eigenstrat) as e:
 		par_unknown_EIGENSTRAT_dict = {}
@@ -204,7 +206,7 @@ elif run_reference == "N":
 	for key, value in par_unknown_EIGENSTRAT_dict.items():
 		par_unknown_EIGENSTRAT_dict['numchrom'] = number_of_chromosomes
 		
-	par_unknown_EIGENSTRAT_new = eig_par_file_directory_path + 'par.unknown.PED.EIGENSTRAT'
+	par_unknown_EIGENSTRAT_new = path_of_new_eigensoft_par_files + 'par.unknown.PED.EIGENSTRAT'
 	eopen = open(par_unknown_EIGENSTRAT_new, 'w')
 	
 	for k,v in par_unknown_EIGENSTRAT_dict.items():
@@ -223,7 +225,7 @@ elif run_reference == "N":
 	for key, value in par_inferancestry_dict.items():
 		par_inferancestry_dict['snpwt'] = snpweights_filename
 
-	par_inferancestry_new = eig_par_file_directory_path + 'par.inferancestry'
+	par_inferancestry_new = path_of_new_eigensoft_par_files + 'par.inferancestry'
 	iopen = open(par_inferancestry_new, 'w')
 
 	for k,v in par_inferancestry_dict.items():
@@ -237,7 +239,7 @@ if run_reference == "Y":
 	#Filter Reference Genotype Files to Smaller Set of Markers Using Plink
 	path_of_outputs_ref_2 = 'ref_filtered/'
 
-	filter_commandline_ref= "python " + path_of_source_code +  "/sw_filt.py " + path_of_inputs_1 + " " + path_of_outputs_ref_2 + " " + marker_list + " " + plink_species_ID + " " + map_files #+ " " + filter_plink_call_rate
+	filter_commandline_ref= "python " + path_of_source_code +  "/sw_filt.py " + path_of_inputs_1 + " " + path_of_outputs_ref_2 + " " + marker_list + " " + plink_marker_action + " " + plink_species_ID + " " + map_files #+ " " + filter_plink_call_rate
 	os.system(filter_commandline_ref)
 
 	#Merge Reference Genotype Files Together
@@ -254,20 +256,20 @@ if run_reference == "Y":
 
 
 	#Convert to EIGENSTRAT format
-	par_file_ref_EIG = eig_par_file_directory_path + 'par.reference.PED.EIGENSTRAT'
+	par_file_ref_EIG = path_of_new_eigensoft_par_files + 'par.reference.PED.EIGENSTRAT'
 
 	convert_eigenstrat_command = EIGENSOFT_software_path + 'bin/convertf -p ' + par_file_ref_EIG
 	os.system(convert_eigenstrat_command)
 
 
 	#Run SmartPCA with Reference Samples
-	par_file_ref_SmartPCA = eig_par_file_directory_path + 'par.reference.smartpca'
+	par_file_ref_SmartPCA = path_of_new_eigensoft_par_files + 'par.reference.smartpca'
 	smartpca_command = EIGENSOFT_software_path + 'src/eigensrc/smartpca -p ' + par_file_ref_SmartPCA + ' > ref_eigenstrat/ref.log'
 	os.system(smartpca_command)
 
 
 	#Run SNPweight calculator
-	par_file_ref_calc_snpwt = eig_par_file_directory_path + 'par.reference.calc_snpwt'
+	par_file_ref_calc_snpwt = path_of_new_eigensoft_par_files + 'par.reference.calc_snpwt'
 	calc_snpwts_command = 'python ' + SNPweights_software_path + 'calc_snpwt.py --par ' + par_file_ref_calc_snpwt
 	os.system(calc_snpwts_command)
 
@@ -277,7 +279,7 @@ elif run_reference == "N":
 	#Filter Unknown Genotype Files to Smaller Set of Markers Using Plink
 	path_of_outputs_unk_2 = 'unk_filtered/'
 
-	filter_commandline_unk = "python " + path_of_source_code +  "/sw_filt.py " + path_of_inputs_1 + " " + path_of_outputs_unk_2 + " " + marker_list + " " + plink_species_ID + " " + map_files
+	filter_commandline_unk = "python " + path_of_source_code +  "/sw_filt.py " + path_of_inputs_1 + " " + path_of_outputs_unk_2 + " " + marker_list + " " + plink_marker_action + " " + plink_species_ID + " " + map_files
 	os.system(filter_commandline_unk)
 
 
@@ -295,13 +297,13 @@ elif run_reference == "N":
 
 
 	#Convert to EIGENSTRAT format
-	par_file_unk_EIG = eig_par_file_directory_path + 'par.unknown.PED.EIGENSTRAT'
+	par_file_unk_EIG = path_of_new_eigensoft_par_files + 'par.unknown.PED.EIGENSTRAT'
 	convert_eigenstrat_command = EIGENSOFT_software_path + 'bin/convertf -p ' + par_file_unk_EIG
 	os.system(convert_eigenstrat_command)
 
 
 	#Inferancestry
-	par_file_inferan = eig_par_file_directory_path + 'par.inferancestry'
+	par_file_inferan = path_of_new_eigensoft_par_files + 'par.inferancestry'
 	inferancestry_command = SNPweights_software_path + 'bin/inferanc -p ' + par_file_inferan
 	os.system(inferancestry_command)
 
