@@ -1,0 +1,12 @@
+genotypes: 
+marker_list: 
+plink_species_ID: 
+assay_plink_map_files: 
+output_table_name: 
+reference_set: 
+number_of_chrom: 
+number_ref_populations: 
+snpweights_filename: 
+eig_par_file_directory_path: 
+SNPweights_software_path: 
+EIGENSOFT_software_path: 
