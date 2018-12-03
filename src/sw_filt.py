@@ -1,3 +1,5 @@
+## Update 12/3/2018
+
 #!/usr/bin/python
 
 #Packages
@@ -150,7 +152,8 @@ for c in ped_file_list:
 counter = 0
 for x in nonempty_genotype_files:	
 	counter +=1
-	assay = x.split('.')[-2]
+	assay = x.replace('_', '.').split('.')[-2]
+	#assay = x.split('.')[-2]
 	genotype_file_name = path_of_inputs + x
 	with open(genotype_file_name) as f:
 		first_line = f.readline().strip()
@@ -164,6 +167,3 @@ for x in nonempty_genotype_files:
 			sys.exit('Genotypes are not in AB or 12 format.')
 		else:
 			plink_12_command()
-
-		
-				
