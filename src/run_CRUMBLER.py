@@ -1,3 +1,5 @@
+## Updated 12/3/2018
+
 #!/usr/bin/python
 
 import os
@@ -37,10 +39,25 @@ if par_dict.has_key('marker_list') and par_dict['marker_list'] != '':
 	
 else:
 	sys.exit('Please specify your SNP list in the parameter file.')
+
+if par_dict.has_key('number_of_chrom') and par_dict['number_of_chrom'] != '':
+        number_of_chromosomes = par_dict['number_of_chrom']
+
+else:
+        number_of_chrom_answer = raw_input('Please specify the number of chromosomes (autosomes) for the species. The X is assumed to be num+1 and the Y is numchrom+2.(enter # or U if unknown): ')
+        if number_of_chrom_answer != 'U':
+                number_of_chromosomes = number_of_chrom_answer
+        else:
+                sys.exit('Please figure out the number of chromosomes (autosomes) for the species and specify in the parameter file. The X is assumed to be num+1 and the Y is numchrom+2.')
 	
-if par_dict.has_key('plink_species_ID') and par_dict['plink_species_ID'] != '':
+if par_dict.has_key('plink_species_ID') and par_dict['plink_species_ID'] != "NA":
 	plink_species_ID = par_dict['plink_species_ID']
-else: 
+
+elif par_dict['plink_species_ID'] == "NA":
+	plink_species_ID = '"' + str('chr-set ' + number_of_chromosomes) + '"'
+	#print plink_species_ID
+
+elif par_dict.has_key('plink_species_ID') and par_dict['plink_species_ID'] == '': 
 	#print 'No plink species ID specified.'
 	sys.exit('No PLINK species ID was specified.')
 
@@ -90,16 +107,6 @@ if par_dict.has_key('EIGENSOFT_software_path') and par_dict['EIGENSOFT_software_
 	EIGENSOFT_software_path = par_dict['EIGENSOFT_software_path']
 else:
 	sys.exit('Please specify a path to where the EIGENSOFT software is located.')	
-
-if par_dict.has_key('number_of_chrom') and par_dict['number_of_chrom'] != '':
-	number_of_chromosomes = par_dict['number_of_chrom']
- 
-else:	
-	number_of_chrom_answer = raw_input('Please specify the number of chromosomes (autosomes) for the species. The X is assumed to be num+1 and the Y is numchrom+2.(enter # or U if unknown): ')	
- 	if number_of_chrom_answer != 'U':
- 		number_of_chromosomes = number_of_chrom_answer
-	else:
-		sys.exit('Please figure out the number of chromosomes (autosomes) for the species and specify in the parameter file. The X is assumed to be num+1 and the Y is numchrom+2.')	
 
 if par_dict.has_key('assay_plink_map_files') and par_dict['assay_plink_map_files'] != '':
 	map_files = par_dict['assay_plink_map_files']
