@@ -61,7 +61,7 @@ merge_file_list.close()
 
 
 if len(ped_file_list) > 2:
-	plink_merge_mult_command = "plink --file " + path_of_inputs + first_file + " --merge-list " + path_of_outputs1 + "merge_file_list_ref.txt --merge-equal-pos --genos 0.99 --recode --allow-no-sex --" + plink_species_ID + " --out " + path_of_outputs1 + unknown_prefix
+	plink_merge_mult_command = "plink --file " + path_of_inputs + first_file + " --merge-list " + path_of_outputs1 + "merge_file_list_ref.txt --merge-equal-pos --geno 0.99 --recode --allow-no-sex --" + plink_species_ID + " --out " + path_of_outputs1 + unknown_prefix
 	os.system(plink_merge_mult_command)
 
 elif len(ped_file_list) == 2:
@@ -70,11 +70,11 @@ elif len(ped_file_list) == 2:
 			second_ped = x
 			second_map = '.'.join(second_ped.split('.')[:-1]) + '.map'
 
-	plink_merge_command = "plink --file " + path_of_inputs + first_file + " --merge " + path_of_inputs + second_ped + " " + path_of_inputs + second_map + " --merge-equal-pos --genos 0.99--recode --allow-no-sex --" + plink_species_ID + " --out " + path_of_outputs1 + unknown_prefix
+	plink_merge_command = "plink --file " + path_of_inputs + first_file + " --merge " + path_of_inputs + second_ped + " " + path_of_inputs + second_map + " --merge-equal-pos --geno 0.99--recode --allow-no-sex --" + plink_species_ID + " --out " + path_of_outputs1 + unknown_prefix
  	os.system(plink_merge_command)	
 
 elif len(ped_file_list) < 2:
 	plink_makebed_command = "plink --file " + path_of_inputs + first_file +  " --make-bed --allow-no-sex --" + plink_species_ID + " --out " + path_of_outputs1 + unknown_prefix
 	os.system(plink_makebed_command)
-	plink_recode_command = "plink --file " + path_of_inputs + first_file +  " --genos 0.99 --recode --allow-no-sex --" + plink_species_ID + " --out " + path_of_outputs1 + unknown_prefix
+	plink_recode_command = "plink --file " + path_of_inputs + first_file +  " --geno 0.99 --recode --allow-no-sex --" + plink_species_ID + " --out " + path_of_outputs1 + unknown_prefix
 	os.system(plink_recode_command)
